@@ -1,8 +1,10 @@
 # Registry and rpository for Docker images
 # Default is docker/robotshop/image:latest
 image:
-  repo: robotshop
-  version: latest
+  #repo: robotshop
+  repo: sysobs
+  #version: latest
+  version: fault-free
 
 # Alternative payment gateway URL
 # Default is https://www.paypal.com
@@ -27,3 +29,11 @@ nodeport: false
 # "special" Openshift. Set to true when deploying to any openshift flavour
 openshift: false
 
+# ANCHOR Multiple versions [https://itnext.io/support-multiple-versions-of-a-service-in-kubernetes-using-helm-ce26adcb516d]
+versions:
+  - name: fault-free
+    image:
+    tag: fault-free
+  - name: fault-waep
+    image:
+    tag: fault-waep
