@@ -2,6 +2,7 @@ import os
 from locust import HttpUser, task, between
 from random import choice
 from random import randint
+from random import seed
 
 class UserBehavior(HttpUser):
     wait_time = between(2, 10)
@@ -22,6 +23,8 @@ class UserBehavior(HttpUser):
 
     @task
     def load(self):
+        # Seed load generator to ensure deterministic workload
+        seed("I like my workloads deterministic ")
         self.client.get('/')
         user = self.client.get('/api/user/uniqueid').json()
         uniqueid = user['uuid']
