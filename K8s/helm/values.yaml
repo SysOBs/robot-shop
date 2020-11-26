@@ -1,10 +1,11 @@
 # Registry and rpository for Docker images
 # Default is docker/robotshop/image:latest
 image:
-  #repo: robotshop
   repo: sysobs
-  #version: latest
   version: fault-free
+
+  reposysobs: sysobs
+  versionfaulty: dsn-fault-dc
 
 # Alternative payment gateway URL
 # Default is https://www.paypal.com
