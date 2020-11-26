@@ -1,0 +1,13 @@
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: payment-destination
+spec:
+  host: payment
+  subsets:
+  - name: fault-free
+    labels:
+      version: fault-free
+  - name: dsn-faul-dc
+    labels:
+      version: dsn-fault-dc

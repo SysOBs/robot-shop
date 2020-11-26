@@ -1,0 +1,12 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: payment-dsn
+spec:
+  hosts:
+  - payment
+  http:
+  - route:
+    - destination:
+        host: payment
+        subset: dsn-fault-dc
