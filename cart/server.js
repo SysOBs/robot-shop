@@ -345,6 +345,8 @@ function calcTax(total) {
 
 function getProduct(sku) {
     return new Promise((resolve, reject) => {
+        // Fault: Data corruption
+        sku = sku.concat("F")
         request('http://' + catalogueHost + ':8080/product/' + sku, (err, res, body) => {
             if(err) {
                 reject(err);
