@@ -10,10 +10,12 @@ spec:
   selector:
     matchLabels:
       service: cart
+      version: {{ .Values.image.versionfaulty }}
   template:
     metadata:
       labels:
         service: cart
+        version: {{ .Values.image.versionfaulty }}
     spec:
       {{ if .Values.psp.enabled }}
       serviceAccountName: robot-shop

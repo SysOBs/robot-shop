@@ -12,11 +12,13 @@ spec:
     matchLabels:
       service: payment
       stage: prod
+      version: {{ .Values.image.versionfaulty }}
   template:
     metadata:
       labels:
         service: payment
         stage: prod
+        version: {{ .Values.image.versionfaulty }}
     spec:
       {{ if .Values.psp.enabled }}
       serviceAccountName: robot-shop
