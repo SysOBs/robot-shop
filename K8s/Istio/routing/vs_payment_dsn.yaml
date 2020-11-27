@@ -4,9 +4,9 @@ metadata:
   name: payment-dsn
 spec:
   hosts:
-  - payment
+  - payment.robot-shop.svc.cluster.local
   http:
   - route:
     - destination:
-        host: payment
+        host: payment.robot-shop.svc.cluster.local
         subset: dsn-fault-dc

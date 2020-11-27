@@ -3,7 +3,7 @@ kind: DestinationRule
 metadata:
   name: payment-destination
 spec:
-  host: payment
+  host: payment.robot-shop.svc.cluster.local
   subsets:
   - name: fault-free
     labels:
