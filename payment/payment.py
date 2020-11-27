@@ -1,22 +1,21 @@
-import instana
+import json
+import logging
 import os
 import sys
 import time
-import logging
 import uuid
-import json
-import requests
-import traceback
+
 import opentracing as ot
-import opentracing.ext.tags as tags
-from flask import Flask
-from flask import Response
-from flask import request
-from flask import jsonify
-from rabbitmq import Publisher
 # Prometheus
 import prometheus_client
+import requests
+from flask import Flask
+from flask import Response
+from flask import jsonify
+from flask import request
 from prometheus_client import Counter, Histogram
+
+from rabbitmq import Publisher
 
 app = Flask(__name__)
 app.logger.setLevel(logging.INFO)
@@ -125,6 +124,12 @@ def pay(id):
         return str(err), 500
     if req.status_code != 200:
         return 'order history update error', req.status_code
+
+    # Fault: Data corruption
+    orderid = str(uuid.uuid4())
+    orderid_list = list(orderid)
+    orderid_list[1] = 'a'
+    orderid = ''.join(orderid_list)
 
     return jsonify({ 'orderid': orderid })
 
