@@ -3,22 +3,23 @@ kind: Deployment
 metadata:
   name: cart-faulty
   labels:
-    service: cart-faulty
+    service: cart
+    version: {{ .Values.image.versionfaulty }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      service: cart-faulty
+      service: cart
   template:
     metadata:
       labels:
-        service: cart-faulty
+        service: cart
     spec:
       {{ if .Values.psp.enabled }}
       serviceAccountName: robot-shop
       {{ end }}
       containers:
-      - name: cart-faulty
+      - name: cart
         image: {{ .Values.image.reposysobs }}/rs-cart:{{ .Values.image.versionfaulty }}
         # agent networking access 
         env:

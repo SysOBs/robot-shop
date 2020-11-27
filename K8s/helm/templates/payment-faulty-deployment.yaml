@@ -3,25 +3,26 @@ kind: Deployment
 metadata:
   name: payment-faulty
   labels:
-    service: payment-faulty
+    service: payment
     stage: prod
+    version: {{ .Values.image.versionfaulty }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      service: payment-faulty
+      service: payment
       stage: prod
   template:
     metadata:
       labels:
-        service: payment-faulty
+        service: payment
         stage: prod
     spec:
       {{ if .Values.psp.enabled }}
       serviceAccountName: robot-shop
       {{ end }}
       containers:
-      - name: payment-faulty
+      - name: payment
         image: {{ .Values.image.reposysobs }}/rs-cart:{{ .Values.image.versionfaulty }}
         # agent networking access
         env:

@@ -4,6 +4,7 @@ metadata:
   name: cart
   labels:
     service: cart
+    version: {{ .Values.image.version }}
 spec:
   replicas: 1
   selector:
