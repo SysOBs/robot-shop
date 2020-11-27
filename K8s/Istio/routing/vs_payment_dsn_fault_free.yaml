@@ -9,4 +9,4 @@ spec:
   - route:
     - destination:
         host: payment.robot-shop.svc.cluster.local
-        subset: dsn-fault-dc
+        subset: ffree

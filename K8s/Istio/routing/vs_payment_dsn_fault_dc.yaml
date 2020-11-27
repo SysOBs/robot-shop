@@ -1,0 +1,12 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: payment-dsn
+spec:
+  hosts:
+  - payment.robot-shop.svc.cluster.local
+  http:
+  - route:
+    - destination:
+        host: payment.robot-shop.svc.cluster.local
+        subset: fdc

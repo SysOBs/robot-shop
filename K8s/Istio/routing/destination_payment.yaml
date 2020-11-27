@@ -5,9 +5,9 @@ metadata:
 spec:
   host: payment.robot-shop.svc.cluster.local
   subsets:
-  - name: fault-free
+  - name: ffree
     labels:
       version: fault-free
-  - name: dsn-faul-dc
+  - name: fdc
     labels:
       version: dsn-fault-dc
