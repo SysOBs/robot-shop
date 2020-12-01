@@ -1,0 +1,12 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: cart-dsn
+spec:
+  hosts:
+  - cart.robot-shop.svc.cluster.local
+  http:
+  - route:
+    - destination:
+        host: cart.robot-shop.svc.cluster.local
+        subset: ffree
