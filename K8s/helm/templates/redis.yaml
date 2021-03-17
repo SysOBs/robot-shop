@@ -1,5 +1,10 @@
 apiVersion: apps/v1
+{{ if not .Values.redis.inMemory }}
 kind: StatefulSet
+{{ end }}
+{{ if .Values.redis.inMemory }}
+kind: Deployment
+{{ end }}
 metadata:
   labels:
     service: redis
@@ -9,7 +14,9 @@ spec:
   selector:
     matchLabels:
       service: redis
+  {{ if not .Values.redis.inMemory }}
   serviceName: redis
+  {{ end }}
   template:
     metadata:
       labels:
@@ -24,9 +31,11 @@ spec:
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
         - containerPort: 6379
+        {{ if not .Values.redis.inMemory }}
         volumeMounts:
           - name: data
             mountPath: /mnt/redis
+        {{ end }}
         resources:
           limits:
             cpu: 200m
@@ -35,6 +44,7 @@ spec:
             cpu: 100m
             memory: 50Mi
       restartPolicy: Always
+  {{ if not .Values.redis.inMemory }}
   volumeClaimTemplates:
     - metadata:
         name: data
@@ -47,4 +57,4 @@ spec:
         resources:
           requests:
             storage: 1Gi
-
+  {{ end }}
