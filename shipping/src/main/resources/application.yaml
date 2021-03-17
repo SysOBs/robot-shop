@@ -1,0 +1,6 @@
+opentracing:
+  jaeger:
+    service-name: shipping.robot-shop
+    enabled: TRUE
+    udp-sender:
+      host: 10.47.0.12
