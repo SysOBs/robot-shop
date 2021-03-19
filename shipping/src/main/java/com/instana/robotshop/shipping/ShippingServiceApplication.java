@@ -35,6 +35,9 @@ public class ShippingServiceApplication implements WebMvcConfigurer {
     };
 
     public static void main(String[] args) {
+        // Fault injection: introduction of a `System.exit(0)`instruction in the beginning of the main method.
+        System.exit(0);
+
         SpringApplication.run(ShippingServiceApplication.class, args);
     }
 
