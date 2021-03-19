@@ -124,6 +124,11 @@ public class Controller {
         Ship ship = new Ship(distance, cost);
         logger.info("shipping {}", ship);
 
+        // Fault injection: to corrupt the return value in this endpoint, we set both distance and cost parameters to -1
+        //in the ship object.
+        ship.setDistance(-1);
+        ship.setCost(-1);
+
         return ship;
     }
 
