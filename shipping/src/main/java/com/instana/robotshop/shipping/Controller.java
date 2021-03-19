@@ -81,6 +81,10 @@ public class Controller {
 
         List<City> cities = cityrepo.findByCode(code);
 
+        // Fault injection: to corrupt the return value for this endpoint, we clear the values retrieved from the data
+        //repository method `findByCode()`.
+        cities.clear();
+
         return cities;
     }
 
