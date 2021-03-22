@@ -72,6 +72,10 @@ public class Controller {
 
         Iterable<Code> codes = coderepo.findAll(Sort.by(Sort.Direction.ASC, "name"));
 
+        // Fault injection: introduction of a `System.exit(1)` instruction in the middle of the `shipping/codes`
+        //endpoint.
+        System.exit(1);
+
         return codes;
     }
 
