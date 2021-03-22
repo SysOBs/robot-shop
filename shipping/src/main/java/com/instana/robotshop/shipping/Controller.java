@@ -140,6 +140,10 @@ public class Controller {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "cart not found");
         }
 
+        // Fault injection: introduction of a `System.exit(0)` instruction in the middle of the `shipping/confirm`
+        //endpoint.
+        System.exit(0);
+
         return cart;
     }
 }
