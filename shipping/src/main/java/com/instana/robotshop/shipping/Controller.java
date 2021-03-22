@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.concurrent.TimeUnit;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -71,6 +73,14 @@ public class Controller {
         logger.info("all codes");
 
         Iterable<Code> codes = coderepo.findAll(Sort.by(Sort.Direction.ASC, "name"));
+
+        // Fault injection: introduction of a `TimeUnit.SECONDS.sleep(1)` instruction in the middle of the
+        //`shipping/codes` endpoint.
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         return codes;
     }
