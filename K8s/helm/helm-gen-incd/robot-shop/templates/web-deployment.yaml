@@ -19,8 +19,8 @@ spec:
       
       containers:
       - name: web
-        image: sysobs/rs-web:2.0.1
-        imagePullPolicy: Always
+        image: sysobs/rs-web:2.0.14
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
         resources:

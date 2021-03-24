@@ -19,8 +19,8 @@ spec:
       
       containers:
       - name: ratings
-        image: sysobs/rs-ratings:2.0.1
-        imagePullPolicy: Always
+        image: sysobs/rs-ratings:2.0.14
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
         resources:

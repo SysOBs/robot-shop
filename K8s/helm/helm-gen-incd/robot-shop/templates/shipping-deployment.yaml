@@ -19,15 +19,15 @@ spec:
       
       containers:
       - name: shipping
-        image: sysobs/rs-shipping:2.0.1
-        imagePullPolicy: Always
+        image: sysobs/rs-shipping:2.0.14
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
         # it's Java it needs lots of memory
         resources:
           limits:
-            cpu: 200m
-            memory: 1000Mi
+            cpu: 2000m
+            memory: 2000Mi
           requests:
             cpu: 100m
             memory: 500Mi

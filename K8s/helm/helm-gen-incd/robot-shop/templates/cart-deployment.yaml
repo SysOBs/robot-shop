@@ -19,8 +19,8 @@ spec:
       
       containers:
       - name: cart
-        image: sysobs/rs-cart:2.0.1
-        imagePullPolicy: Always
+        image: sysobs/rs-cart:2.0.14
+        imagePullPolicy: IfNotPresent
         # agent networking access
         env:
           - name: INSTANA_AGENT_HOST

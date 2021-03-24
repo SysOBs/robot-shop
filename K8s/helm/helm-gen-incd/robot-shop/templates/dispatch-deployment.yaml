@@ -19,8 +19,8 @@ spec:
       
       containers:
       - name: dispatch
-        image: sysobs/rs-dispatch:2.0.1
-        imagePullPolicy: Always
+        image: sysobs/rs-dispatch:2.0.14
+        imagePullPolicy: IfNotPresent
         env:
           # agent networking access
           - name: INSTANA_AGENT_HOST

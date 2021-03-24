@@ -19,8 +19,8 @@ spec:
       
       containers:
       - name: mysql
-        image: sysobs/rs-mysql-db:2.0.1
-        imagePullPolicy: Always
+        image: sysobs/rs-mysql-db:2.0.14
+        imagePullPolicy: IfNotPresent
         # added for Istio
         securityContext:
           capabilities:
