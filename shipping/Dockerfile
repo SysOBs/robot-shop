@@ -15,16 +15,17 @@ RUN mvn package
 #
 # Run
 #
-FROM openjdk:8-jdk
+FROM openjdk:8u92-jdk-alpine
 
 EXPOSE 8080
 
 WORKDIR /opt/shipping
 
-ENV CART_ENDPOINT=cart:8080
-ENV DB_HOST=mysql
+ENV CART_ENDPOINT=cart:8080\
+    DB_HOST=mysql\
+    JAVA_TOOL_OPTIONS=""
 
 COPY --from=build /opt/shipping/target/shipping-1.0.jar shipping.jar
 
-CMD [ "java", "-Xmn256m", "-Xmx768m", "-jar", "shipping.jar" ]
+CMD java $JAVA_TOOL_OPTIONS -jar shipping.jar
 

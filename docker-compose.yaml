@@ -83,6 +83,8 @@ services:
     build:
       context: shipping
     image: ${REPO}/rs-shipping:${TAG}
+    environment:
+      JAVA_TOOL_OPTIONS: -Xms256m -Xmx2g
     depends_on:
       - mysql
     networks:
