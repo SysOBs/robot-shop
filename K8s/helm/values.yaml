@@ -2,8 +2,8 @@
 # Default is docker/robotshop/image:latest
 image:
   repo: sysobs
-  version: latest
-  pullPolicy: IfNotPresent
+  version: 2.0.14
+  pullPolicy: IfNotPresent 
 
 # Alternative payment gateway URL
 # Default is https://www.paypal.com
