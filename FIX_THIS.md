@@ -1,7 +1,7 @@
 # ToFIX
 
-- Payment gateway: http://github.com
-- Modify deployment shipping: hard-coded values in Dockerfile
-- web worker connections: modify nginx.conf
+- [X] Payment gateway: http://github.com
+- [ ] Modify deployment shipping: hard-coded values in Dockerfile
+- [ ] Web worker connections: increase worker_connections in nginx.conf
 
-Next: shipping (CartHelper) --> Cart
+Next: shipping (CartHelper) --> Cart (HTTP 500)

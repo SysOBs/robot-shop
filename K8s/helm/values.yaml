@@ -7,9 +7,10 @@ image:
 
 # Alternative payment gateway URL
 # Default is https://www.paypal.com
+# The alternative payment gateway must return an HTTP 200
 payment:
-  gateway: null
-  #gateway: https://www.worldpay.com
+  #gateway: null
+  gateway: https://github.com
 
 # EUM configuration
 # Provide your key and set the endpoint
