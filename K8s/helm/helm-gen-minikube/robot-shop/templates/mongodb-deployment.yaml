@@ -1,0 +1,33 @@
+---
+# Source: robot-shop/templates/mongodb-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongodb
+  labels:
+    service: mongodb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: mongodb
+  template:
+    metadata:
+      labels:
+        service: mongodb
+    spec:
+      
+      containers:
+      - name: mongodb
+        image: sysobs/rs-mongodb:2.0.1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 27017
+        resources:
+          limits:
+            cpu: 200m
+            memory: 200Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+      restartPolicy: Always
