@@ -13,4 +13,5 @@ COPY entrypoint.sh /root/
 ENTRYPOINT ["/root/entrypoint.sh"]
 
 COPY default.conf.template /etc/nginx/conf.d/default.conf.template
+COPY nginx.conf /etc/nginx/
 COPY static /usr/share/nginx/html
