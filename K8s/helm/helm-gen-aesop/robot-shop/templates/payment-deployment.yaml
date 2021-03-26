@@ -1,0 +1,44 @@
+---
+# Source: robot-shop/templates/payment-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payment
+  labels:
+    service: payment
+    stage: prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: payment
+      stage: prod
+  template:
+    metadata:
+      labels:
+        service: payment
+        stage: prod
+    spec:
+      
+      containers:
+      - name: payment
+        image: sysobs/rs-payment:2.0.14
+        imagePullPolicy: IfNotPresent
+        # agent networking access
+        env:
+          - name: INSTANA_AGENT_HOST
+            valueFrom:
+              fieldRef:
+                fieldPath: status.hostIP
+          - name: PAYMENT_GATEWAY
+            value: https://github.com
+        ports:
+        - containerPort: 8080
+        resources:
+          limits:
+            cpu: 200m
+            memory: 100Mi
+          requests:
+            cpu: 100m
+            memory: 50Mi
+      restartPolicy: Always
