@@ -21,13 +21,16 @@ spec:
       - name: shipping
         image: {{ .Values.image.repo }}/rs-shipping:{{ .Values.image.version }}
         imagePullPolicy: {{ .Values.image.pullPolicy }}
+        env:
+          - name: JAVA_TOOL_OPTIONS
+            value: "-Xmx1500m"
         ports:
         - containerPort: 8080
         # it's Java it needs lots of memory
         resources:
           limits:
             cpu: 2000m
-            memory: 2000Mi
+            memory: 1500Mi
           requests:
             cpu: 100m
             memory: 500Mi

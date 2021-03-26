@@ -23,7 +23,7 @@ WORKDIR /opt/shipping
 
 ENV CART_ENDPOINT=cart:8080\
     DB_HOST=mysql\
-    JAVA_TOOL_OPTIONS=""
+    JAVA_TOOL_OPTIONS="-Xmx1.5g"
 
 COPY --from=build /opt/shipping/target/shipping-1.0.jar shipping.jar
 
