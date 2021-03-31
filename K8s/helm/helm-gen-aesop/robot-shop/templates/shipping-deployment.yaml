@@ -23,14 +23,14 @@ spec:
         imagePullPolicy: IfNotPresent
         env:
           - name: JAVA_TOOL_OPTIONS
-            value: "-Xmx1500m"
+            value: "-Xmx4096m"
         ports:
         - containerPort: 8080
         # it's Java it needs lots of memory
         resources:
-          limits:
-            cpu: 2000m
-            memory: 1500Mi
+          #limits:
+          #  cpu: 2000m
+          #  memory: 1500Mi
           requests:
             cpu: 100m
             memory: 500Mi
@@ -43,3 +43,16 @@ spec:
           failureThreshold: 30
           successThreshold: 1
       restartPolicy: Always
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: beta.kubernetes.io/instance-type
+                operator: In
+                values:
+                - t3.large
+              - key: node.kubernetes.io/instance-type
+                operator: In
+                values:
+                - t3.large
