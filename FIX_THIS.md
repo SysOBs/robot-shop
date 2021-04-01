@@ -4,6 +4,4 @@
 - [X] Modify deployment shipping: hard-coded values in Dockerfile
 - [X] Web worker connections: increase worker_connections in nginx.conf
 - [X] Shipping: Increase resource limits for the deployment
-- [ ] Shipping: Out of memory exception.
-
-Next: shipping (CartHelper) --> Cart (HTTP 500)
+- [X] Shipping: Out of memory exception.
