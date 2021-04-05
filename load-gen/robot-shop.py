@@ -1,11 +1,14 @@
 import os
 import random
 
-from locust import HttpUser, task, between
+from locust import task, between
+from locust.contrib.fasthttp import FastHttpUser
 from random import choice
 from random import randint
 
-class UserBehavior(HttpUser):
+class UserBehavior(FastHttpUser):
+    connection_timeout = 300.0
+
     wait_time = between(2, 10)
 
     # source: https://tools.tracemyip.org/search--ip/list
