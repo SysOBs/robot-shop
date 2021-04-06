@@ -13,6 +13,7 @@ spec:
     metadata:
       labels:
         service: mongodb
+        version: {{ .Values.image.version }}
     spec:
       {{ if .Values.psp.enabled }}
       serviceAccountName: robot-shop
@@ -25,8 +26,8 @@ spec:
         - containerPort: 27017
         resources:
           limits:
-            cpu: 200m
-            memory: 200Mi
+            cpu: 2000m
+            memory: 2000Mi
           requests:
             cpu: 100m
             memory: 100Mi

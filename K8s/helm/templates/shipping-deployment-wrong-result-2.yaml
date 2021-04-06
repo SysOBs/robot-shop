@@ -13,6 +13,7 @@ spec:
     metadata:
       labels:
         service: shipping
+        version: 2.0.13-wrong-result-2
     spec:
       {{ if .Values.psp.enabled }}
       serviceAccountName: robot-shop

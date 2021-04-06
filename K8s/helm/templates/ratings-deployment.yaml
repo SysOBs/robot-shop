@@ -13,6 +13,7 @@ spec:
     metadata:
       labels:
         service: ratings
+        version: {{ .Values.image.version }}
     spec:
       {{ if .Values.psp.enabled }}
       serviceAccountName: robot-shop
@@ -25,8 +26,8 @@ spec:
         - containerPort: 80
         resources:
           limits:
-            cpu: 200m
-            memory: 100Mi
+            cpu: 400m
+            memory: 200Mi
           requests:
             cpu: 100m
             memory: 50Mi
