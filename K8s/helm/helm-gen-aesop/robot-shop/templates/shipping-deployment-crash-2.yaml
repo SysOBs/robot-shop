@@ -15,7 +15,7 @@ spec:
     metadata:
       labels:
         service: shipping
-        version: 2.0.13-local-crash-2
+        version: 2.0.13-crash-2
     spec:
       
       containers:
