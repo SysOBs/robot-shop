@@ -15,6 +15,7 @@ spec:
     metadata:
       labels:
         service: rabbitmq
+        version: 2.0.14
     spec:
       
       containers:
@@ -26,8 +27,8 @@ spec:
         - containerPort: 15672
         resources:
           limits:
-            cpu: 200m
-            memory: 512Mi
+            cpu: 400m
+            memory: 1024Mi
           requests:
             cpu: 100m
             memory: 256Mi

@@ -15,6 +15,7 @@ spec:
     metadata:
       labels:
         service: mongodb
+        version: 2.0.14
     spec:
       
       containers:
@@ -25,8 +26,8 @@ spec:
         - containerPort: 27017
         resources:
           limits:
-            cpu: 200m
-            memory: 200Mi
+            cpu: 2000m
+            memory: 2000Mi
           requests:
             cpu: 100m
             memory: 100Mi

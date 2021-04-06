@@ -1,13 +1,13 @@
 ---
-# Source: robot-shop/templates/shipping-deployment.yaml
+# Source: robot-shop/templates/shipping-deployment-crash-1.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: shipping
+  name: shipping-crash-1
   labels:
     service: shipping
 spec:
-  replicas: 1
+  replicas: 0
   selector:
     matchLabels:
       service: shipping
@@ -15,16 +15,13 @@ spec:
     metadata:
       labels:
         service: shipping
-        version: 2.0.14
+        version: 2.0.13-local-crash-1
     spec:
       
       containers:
       - name: shipping
-        image: sysobs/rs-shipping:2.0.14
+        image: sysobs/rs-shipping:2.0.13-local-crash-1
         imagePullPolicy: IfNotPresent
-        env:
-          - name: JAVA_TOOL_OPTIONS
-            value: "-Xmx4096m"
         ports:
         - containerPort: 8080
         # it's Java it needs lots of memory
