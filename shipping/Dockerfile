@@ -23,6 +23,7 @@ WORKDIR /opt/shipping
 
 ENV CART_ENDPOINT=cart:8080
 ENV DB_HOST=mysql
+ENV DELAY=1
 
 COPY --from=build /opt/shipping/target/shipping-1.0.jar shipping.jar
 

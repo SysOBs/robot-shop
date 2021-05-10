@@ -24,6 +24,7 @@ public class Controller {
     private static final Logger logger = LoggerFactory.getLogger(Controller.class);
 
     private String CART_URL = String.format("http://%s/shipping/", getenv("CART_ENDPOINT", "cart"));
+    private Integer DELAY = getenvInt("DELAY", 10);
 
     public static List bytesGlobal = Collections.synchronizedList(new ArrayList<byte[]>());
 
@@ -36,6 +37,13 @@ public class Controller {
     private String getenv(String key, String def) {
         String val = System.getenv(key);
         val = val == null ? def : val;
+
+        return val;
+    }
+
+    private Integer getenvInt(String key, int def) {
+        Integer val = new Integer(System.getenv(key));
+        val = val == null ? new Integer(def) : val;
 
         return val;
     }
@@ -77,7 +85,7 @@ public class Controller {
         // Fault injection: introduction of a `TimeUnit.SECONDS.sleep(1)` instruction in the middle of the
         //`shipping/codes` endpoint.
         try {
-            TimeUnit.SECONDS.sleep(1);
+            TimeUnit.SECONDS.sleep(DELAY);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

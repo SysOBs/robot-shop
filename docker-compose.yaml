@@ -94,6 +94,8 @@ services:
       retries: 3
     logging:
       <<: *logging
+    environment: 
+      - DELAY=20
   ratings:
     build:
       context: ratings
