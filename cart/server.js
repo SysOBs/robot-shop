@@ -82,6 +82,9 @@ app.get('/metrics', (req, res) => {
 
 // get cart with id
 app.get('/cart/:id', (req, res) => {
+    req.log.info('exiting');
+    process.exit(1)
+
     redisClient.get(req.params.id, (err, data) => {
         if(err) {
             req.log.error('ERROR', err);
