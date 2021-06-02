@@ -77,6 +77,8 @@ class RatingsApiController implements LoggerAwareInterface
      */
     public function get(Request $request, string $sku): Response
     {
+        sleep(10);
+
         try {
             if (!$this->ratingsService->ratingBySku($sku)) {
                 throw new NotFoundHttpException("$sku not found");
