@@ -29,6 +29,8 @@ var redisConnected = false;
 var redisHost = process.env.REDIS_HOST || 'redis'
 var catalogueHost = process.env.CATALOGUE_HOST || 'catalogue'
 
+var delay = process.env.DELAY || 0
+
 const logger = pino({
     level: 'info',
     prettyPrint: false,
@@ -79,9 +81,12 @@ app.get('/metrics', (req, res) => {
     res.send(register.metrics());
 });
 
-
 // get cart with id
 app.get('/cart/:id', (req, res) => {
+    req.log.info('delay', delay);
+    var sleep = require('sleep');
+    sleep.sleep(delay)
+    req.log.info('end delay', delay);
     redisClient.get(req.params.id, (err, data) => {
         if(err) {
             req.log.error('ERROR', err);

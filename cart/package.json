@@ -17,6 +17,7 @@
       "express-pino-logger": "^4.0.0",
       "pino-pretty": "^2.5.0",
       "@instana/collector": "^1.98.1",
-      "prom-client": "^11.5.3"
+      "prom-client": "^11.5.3",
+      "sleep": "^6.3.0"
   }
 }
