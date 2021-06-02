@@ -25,6 +25,9 @@ CART = os.getenv('CART_HOST', 'cart')
 USER = os.getenv('USER_HOST', 'user')
 PAYMENT_GATEWAY = os.getenv('PAYMENT_GATEWAY', 'https://paypal.com/')
 
+VF_CONTENT = os.getenv('VF_CONTENT', False).lower() in ('true', '1', 't')
+VF_TYPE = os.getenv('VF_TYPE', False).lower() in ('true', '1', 't')
+
 # Prometheus
 PromMetrics = {}
 PromMetrics['SOLD_COUNTER'] = Counter('sold_count', 'Running count of items sold')
@@ -54,6 +57,19 @@ def metrics():
 @app.route('/pay/<id>', methods=['POST'])
 def pay(id):
     app.logger.info('payment for {}'.format(id))
+    
+    app.logger.info(f"VF_CONTENT {VF_CONTENT}")
+    if VF_CONTENT:
+        app.logger.info(f"id {id} {type(id)} before")
+        id = id * 10
+        app.logger.info(f"id {id} {type(id)} after")
+
+    app.logger.info(f"VF_TYPE {VF_TYPE}")
+    if VF_TYPE:
+        app.logger.info(f"id {id} {type(id)} before")
+        id = complex(id)
+        app.logger.info(f"id {id} {type(id)} after")
+
     cart = request.get_json()
     app.logger.info(cart)
 
