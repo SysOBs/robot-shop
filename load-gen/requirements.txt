@@ -1,1 +1,4 @@
 locust
+jaeger-client
+pure-transport
+py_zipkin
