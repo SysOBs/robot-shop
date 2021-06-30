@@ -1,8 +1,8 @@
 import os
 import random
 
+from py_zipkin.request_helpers import create_http_headers
 from py_zipkin.zipkin import zipkin_span, create_http_headers_for_new_span
-from transport import http_transport
 
 from locust import HttpUser, task, between
 from random import choice
@@ -46,13 +46,13 @@ class UserBehavior(HttpUser):
                 host=fake_ip,
                 transport_handler=HttpTransport(),
                 sample_rate=100,
-        ) as zipkin_context:
-            headers = create_http_headers_for_new_span() | {'x-forwarded-for': fake_ip}
+        ):
+            headers = create_http_headers() | {'x-forwarded-for': fake_ip}
             credentials = {
                 'name': 'user',
                 'password': 'password'
             }
-            print(zipkin_context)
+
             res = self.client.post(
                 '/api/user/login', json=credentials, headers=headers)
             print('login {}'.format(res.status_code))
@@ -67,8 +67,8 @@ class UserBehavior(HttpUser):
                 transport_handler=HttpTransport(),
                 sample_rate=100,
         ):
-            headers = create_http_headers_for_new_span() | {'x-forwarded-for': fake_ip}
-            print(headers)
+            headers = create_http_headers() | {'x-forwarded-for': fake_ip}
+
             self.client.get('/',headers=headers)
             user = self.client.get('/api/user/uniqueid',
                                   headers=headers).json()
@@ -130,4 +130,4 @@ class UserBehavior(HttpUser):
             print('Error request')
             cart = {'total': 0, 'tax': 0}
             self.client.post('/api/payment/pay/partner-57',
-                             json=cart, headers=create_http_headers_for_new_span() | {'x-forwarded-for': fake_ip})
+                             json=cart, headers=create_http_headers() | {'x-forwarded-for': fake_ip})
