@@ -15,3 +15,4 @@ class HttpTransport(BaseTransportHandler):
             data=encoded_span,
             headers={'Content-Type': 'application/x-thrift'},
         )
+        print(encoded_span)

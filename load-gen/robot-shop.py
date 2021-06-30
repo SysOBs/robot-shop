@@ -8,6 +8,8 @@ from locust import HttpUser, task, between
 from random import choice
 from random import randint
 
+from transport.http_transport import HttpTransport
+
 
 class UserBehavior(HttpUser):
     wait_time = between(2, 10)
@@ -38,26 +40,35 @@ class UserBehavior(HttpUser):
     @task
     def login(self):
         fake_ip = random.choice(self.fake_ip_addresses)
-        headers = create_http_headers_for_new_span() | {'x-forwarded-for': fake_ip}
-        credentials = {
-            'name': 'user',
-            'password': 'password'
-        }
-        res = self.client.post(
-            '/api/user/login', json=credentials, headers=headers)
-        print('login {}'.format(res.status_code))
+        with zipkin_span(
+                service_name='locust-client',
+                span_name='client login',
+                host=fake_ip,
+                transport_handler=HttpTransport(),
+                sample_rate=100,
+        ) as zipkin_context:
+            headers = create_http_headers_for_new_span() | {'x-forwarded-for': fake_ip}
+            credentials = {
+                'name': 'user',
+                'password': 'password'
+            }
+            print(zipkin_context)
+            res = self.client.post(
+                '/api/user/login', json=credentials, headers=headers)
+            print('login {}'.format(res.status_code))
 
     @task
     def load(self):
+        fake_ip = random.choice(self.fake_ip_addresses)
         with zipkin_span(
                 service_name='locust-client',
-                span_name='load',
-                transport_handler=http_transport,
-                port=30494,
+                span_name='client process',
+                host=fake_ip,
+                transport_handler=HttpTransport(),
                 sample_rate=100,
         ):
-            fake_ip = random.choice(self.fake_ip_addresses)
             headers = create_http_headers_for_new_span() | {'x-forwarded-for': fake_ip}
+            print(headers)
             self.client.get('/',headers=headers)
             user = self.client.get('/api/user/uniqueid',
                                   headers=headers).json()
